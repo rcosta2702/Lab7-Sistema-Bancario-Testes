@@ -1,7 +1,5 @@
 # Lab 7 - Sistema bancário, testes e qualidade
 
-Projeto independente do Lab 6 de frete, criado conforme a escolha do usuário para atender ao PDF bancário. O material está nomeado Lab 7, mas suas páginas usam 6.1 a 6.5; este projeto identifica as cinco entregas como 7.1 a 7.5.
-
 ## Entregas
 
 | Exercício | Arquivos |
