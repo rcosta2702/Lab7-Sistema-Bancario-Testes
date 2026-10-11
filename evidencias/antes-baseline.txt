@@ -1,0 +1,49 @@
+Data UTC: 2026-10-11T20:32:25.072290+00:00
+Python: 3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]
+Comando: python -m pytest -v tests/test_unitarios.py tests/test_integracao.py tests/test_funcionais.py
+Exit code: 0
+
+============================= test session starts =============================
+platform win32 -- Python 3.14.3, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Rafael Costa\Documents\GitHub\Modelagem de Sistemas Mackenzie 2026.2\lab6\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Rafael Costa\Documents\Codex\2026-10-11\fa\outputs\Lab7-Sistema-Bancario
+configfile: pytest.ini
+collecting ... collected 34 items
+
+tests/test_unitarios.py::test_u01_converter_valor[0.01-1] PASSED         [  2%]
+tests/test_unitarios.py::test_u01_converter_valor[100,50-10050] PASSED   [  5%]
+tests/test_unitarios.py::test_u01_converter_valor[100-10000] PASSED      [  8%]
+tests/test_unitarios.py::test_u01_converter_valor[999999999.99-99999999999] PASSED [ 11%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[0] PASSED               [ 14%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[-1] PASSED              [ 17%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[NaN] PASSED             [ 20%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[Infinity] PASSED        [ 23%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[1.001] PASSED           [ 26%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[abc] PASSED             [ 29%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[] PASSED                [ 32%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[1000000000] PASSED      [ 35%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[True] PASSED            [ 38%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[None] PASSED            [ 41%]
+tests/test_unitarios.py::test_u03_deposito_exato PASSED                  [ 44%]
+tests/test_unitarios.py::test_u04_saque_total PASSED                     [ 47%]
+tests/test_unitarios.py::test_u05_saque_insuficiente PASSED              [ 50%]
+tests/test_unitarios.py::test_u06_operacao_invalida[0-depositar] PASSED  [ 52%]
+tests/test_unitarios.py::test_u06_operacao_invalida[0-sacar] PASSED      [ 55%]
+tests/test_unitarios.py::test_u06_operacao_invalida[-1-depositar] PASSED [ 58%]
+tests/test_unitarios.py::test_u06_operacao_invalida[-1-sacar] PASSED     [ 61%]
+tests/test_unitarios.py::test_u06_operacao_invalida[True-depositar] PASSED [ 64%]
+tests/test_unitarios.py::test_u06_operacao_invalida[True-sacar] PASSED   [ 67%]
+tests/test_unitarios.py::test_u06_operacao_invalida[0.1-depositar] PASSED [ 70%]
+tests/test_unitarios.py::test_u06_operacao_invalida[0.1-sacar] PASSED    [ 73%]
+tests/test_unitarios.py::test_u07_limite_de_saldo PASSED                 [ 76%]
+tests/test_integracao.py::test_i01_persistencia_apos_reabrir PASSED      [ 79%]
+tests/test_integracao.py::test_i02_falha_preserva_saldo PASSED           [ 82%]
+tests/test_integracao.py::test_i03_entrada_invalida_nao_persiste PASSED  [ 85%]
+tests/test_integracao.py::test_i04_duas_instancias_compartilham_saldo PASSED [ 88%]
+tests/test_funcionais.py::test_f01_jornada_cliente PASSED                [ 91%]
+tests/test_funcionais.py::test_f02_saque_recusado PASSED                 [ 94%]
+tests/test_funcionais.py::test_f03_valor_invalido PASSED                 [ 97%]
+tests/test_funcionais.py::test_f04_falha_de_armazenamento PASSED         [100%]
+
+- generated xml file: C:\Users\Rafael Costa\Documents\Codex\2026-10-11\fa\outputs\Lab7-Sistema-Bancario\evidencias\antes-baseline.xml -
+============================= 34 passed in 2.26s ==============================

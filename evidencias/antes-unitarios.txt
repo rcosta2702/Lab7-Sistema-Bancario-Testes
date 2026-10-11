@@ -1,0 +1,41 @@
+Data UTC: 2026-10-11T20:32:17.587339+00:00
+Python: 3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]
+Comando: python -m pytest -v tests/test_unitarios.py
+Exit code: 0
+
+============================= test session starts =============================
+platform win32 -- Python 3.14.3, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Rafael Costa\Documents\GitHub\Modelagem de Sistemas Mackenzie 2026.2\lab6\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Rafael Costa\Documents\Codex\2026-10-11\fa\outputs\Lab7-Sistema-Bancario
+configfile: pytest.ini
+collecting ... collected 26 items
+
+tests/test_unitarios.py::test_u01_converter_valor[0.01-1] PASSED         [  3%]
+tests/test_unitarios.py::test_u01_converter_valor[100,50-10050] PASSED   [  7%]
+tests/test_unitarios.py::test_u01_converter_valor[100-10000] PASSED      [ 11%]
+tests/test_unitarios.py::test_u01_converter_valor[999999999.99-99999999999] PASSED [ 15%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[0] PASSED               [ 19%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[-1] PASSED              [ 23%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[NaN] PASSED             [ 26%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[Infinity] PASSED        [ 30%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[1.001] PASSED           [ 34%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[abc] PASSED             [ 38%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[] PASSED                [ 42%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[1000000000] PASSED      [ 46%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[True] PASSED            [ 50%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[None] PASSED            [ 53%]
+tests/test_unitarios.py::test_u03_deposito_exato PASSED                  [ 57%]
+tests/test_unitarios.py::test_u04_saque_total PASSED                     [ 61%]
+tests/test_unitarios.py::test_u05_saque_insuficiente PASSED              [ 65%]
+tests/test_unitarios.py::test_u06_operacao_invalida[0-depositar] PASSED  [ 69%]
+tests/test_unitarios.py::test_u06_operacao_invalida[0-sacar] PASSED      [ 73%]
+tests/test_unitarios.py::test_u06_operacao_invalida[-1-depositar] PASSED [ 76%]
+tests/test_unitarios.py::test_u06_operacao_invalida[-1-sacar] PASSED     [ 80%]
+tests/test_unitarios.py::test_u06_operacao_invalida[True-depositar] PASSED [ 84%]
+tests/test_unitarios.py::test_u06_operacao_invalida[True-sacar] PASSED   [ 88%]
+tests/test_unitarios.py::test_u06_operacao_invalida[0.1-depositar] PASSED [ 92%]
+tests/test_unitarios.py::test_u06_operacao_invalida[0.1-sacar] PASSED    [ 96%]
+tests/test_unitarios.py::test_u07_limite_de_saldo PASSED                 [100%]
+
+- generated xml file: C:\Users\Rafael Costa\Documents\Codex\2026-10-11\fa\outputs\Lab7-Sistema-Bancario\evidencias\antes-unitarios.xml -
+============================= 26 passed in 0.19s ==============================
