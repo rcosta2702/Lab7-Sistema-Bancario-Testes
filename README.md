@@ -10,8 +10,6 @@
 | 7.4 - Funcional | tests/test_funcionais.py; evidencias/antes-funcionais.txt |
 | 7.5 - Regressão e poupança | banco/servico.py; tests/test_poupanca.py; evidencias/depois-regressao.txt; evidencias/depois-completa.txt |
 
-[Resultados e análise](docs/RESULTADOS.md): **48 testes aprovados**, incluindo os **34 testes originais inalterados**. O histórico Git contém a versão sem poupança na tag `baseline-sem-poupanca` e a versão final com a extensão.
-
 ## Preparar e executar
 
 Requer Python 3.14+. Na pasta deste projeto:
