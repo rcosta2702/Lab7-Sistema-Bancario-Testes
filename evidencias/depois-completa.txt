@@ -1,0 +1,63 @@
+Data UTC: 2026-10-11T20:34:04.511862+00:00
+Python: 3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]
+Comando: python -m pytest -v tests
+Exit code: 0
+
+============================= test session starts =============================
+platform win32 -- Python 3.14.3, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Rafael Costa\Documents\GitHub\Modelagem de Sistemas Mackenzie 2026.2\lab6\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Rafael Costa\Documents\Codex\2026-10-11\fa\outputs\Lab7-Sistema-Bancario
+configfile: pytest.ini
+collecting ... collected 48 items
+
+tests/test_funcionais.py::test_f01_jornada_cliente PASSED                [  2%]
+tests/test_funcionais.py::test_f02_saque_recusado PASSED                 [  4%]
+tests/test_funcionais.py::test_f03_valor_invalido PASSED                 [  6%]
+tests/test_funcionais.py::test_f04_falha_de_armazenamento PASSED         [  8%]
+tests/test_integracao.py::test_i01_persistencia_apos_reabrir PASSED      [ 10%]
+tests/test_integracao.py::test_i02_falha_preserva_saldo PASSED           [ 12%]
+tests/test_integracao.py::test_i03_entrada_invalida_nao_persiste PASSED  [ 14%]
+tests/test_integracao.py::test_i04_duas_instancias_compartilham_saldo PASSED [ 16%]
+tests/test_poupanca.py::test_p01_transferencia_conserva_total PASSED     [ 18%]
+tests/test_poupanca.py::test_p02_investir_todo_saldo_e_persistir PASSED  [ 20%]
+tests/test_poupanca.py::test_p03_insuficiente_nao_altera PASSED          [ 22%]
+tests/test_poupanca.py::test_p04_valor_invalido[0] PASSED                [ 25%]
+tests/test_poupanca.py::test_p04_valor_invalido[-1] PASSED               [ 27%]
+tests/test_poupanca.py::test_p04_valor_invalido[1.001] PASSED            [ 29%]
+tests/test_poupanca.py::test_p04_valor_invalido[NaN] PASSED              [ 31%]
+tests/test_poupanca.py::test_p04_valor_invalido[abc] PASSED              [ 33%]
+tests/test_poupanca.py::test_p05_migracao_preserva_versao_inicial PASSED [ 35%]
+tests/test_poupanca.py::test_p06_rollback_falha_no_banco PASSED          [ 37%]
+tests/test_poupanca.py::test_p07_operacoes_antigas_apos_investir PASSED  [ 39%]
+tests/test_poupanca.py::test_p08_jornada_funcional_poupanca PASSED       [ 41%]
+tests/test_poupanca.py::test_p09_investimentos_concorrentes PASSED       [ 43%]
+tests/test_poupanca.py::test_p10_limite_poupanca_preserva_corrente PASSED [ 45%]
+tests/test_unitarios.py::test_u01_converter_valor[0.01-1] PASSED         [ 47%]
+tests/test_unitarios.py::test_u01_converter_valor[100,50-10050] PASSED   [ 50%]
+tests/test_unitarios.py::test_u01_converter_valor[100-10000] PASSED      [ 52%]
+tests/test_unitarios.py::test_u01_converter_valor[999999999.99-99999999999] PASSED [ 54%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[0] PASSED               [ 56%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[-1] PASSED              [ 58%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[NaN] PASSED             [ 60%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[Infinity] PASSED        [ 62%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[1.001] PASSED           [ 64%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[abc] PASSED             [ 66%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[] PASSED                [ 68%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[1000000000] PASSED      [ 70%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[True] PASSED            [ 72%]
+tests/test_unitarios.py::test_u02_rejeitar_valor[None] PASSED            [ 75%]
+tests/test_unitarios.py::test_u03_deposito_exato PASSED                  [ 77%]
+tests/test_unitarios.py::test_u04_saque_total PASSED                     [ 79%]
+tests/test_unitarios.py::test_u05_saque_insuficiente PASSED              [ 81%]
+tests/test_unitarios.py::test_u06_operacao_invalida[0-depositar] PASSED  [ 83%]
+tests/test_unitarios.py::test_u06_operacao_invalida[0-sacar] PASSED      [ 85%]
+tests/test_unitarios.py::test_u06_operacao_invalida[-1-depositar] PASSED [ 87%]
+tests/test_unitarios.py::test_u06_operacao_invalida[-1-sacar] PASSED     [ 89%]
+tests/test_unitarios.py::test_u06_operacao_invalida[True-depositar] PASSED [ 91%]
+tests/test_unitarios.py::test_u06_operacao_invalida[True-sacar] PASSED   [ 93%]
+tests/test_unitarios.py::test_u06_operacao_invalida[0.1-depositar] PASSED [ 95%]
+tests/test_unitarios.py::test_u06_operacao_invalida[0.1-sacar] PASSED    [ 97%]
+tests/test_unitarios.py::test_u07_limite_de_saldo PASSED                 [100%]
+
+- generated xml file: C:\Users\Rafael Costa\Documents\Codex\2026-10-11\fa\outputs\Lab7-Sistema-Bancario\evidencias\depois-completa.xml -
+============================= 48 passed in 2.30s ==============================

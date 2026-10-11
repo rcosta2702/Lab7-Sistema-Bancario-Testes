@@ -13,14 +13,20 @@ def main():
     parser.add_argument("--banco", default="conta.sqlite3", help="Arquivo SQLite da conta")
     comandos = parser.add_subparsers(dest="comando", required=True)
     comandos.add_parser("saldo", help="Consultar saldo da conta corrente")
-    for nome in ("depositar", "sacar"):
+    comandos.add_parser("poupanca", help="Consultar conta corrente, poupança e total")
+    for nome in ("depositar", "sacar", "investir"):
         comando = comandos.add_parser(nome)
         comando.add_argument("valor", help="Valor em reais, por exemplo 100,50")
     args = parser.parse_args()
     try:
         banco = Banco(args.banco)
-        saldo = banco.saldo() if args.comando == "saldo" else banco.movimentar(args.comando, args.valor)
-        print(json.dumps({"saldo": formatar(saldo)}, ensure_ascii=False))
+        if args.comando in ("investir", "poupanca"):
+            saldo, poupanca = banco.investir(args.valor) if args.comando == "investir" else banco.posicao()
+            resposta = {"saldo": formatar(saldo), "poupanca": formatar(poupanca), "total": formatar(saldo + poupanca)}
+        else:
+            saldo = banco.saldo() if args.comando == "saldo" else banco.movimentar(args.comando, args.valor)
+            resposta = {"saldo": formatar(saldo)}
+        print(json.dumps(resposta, ensure_ascii=False))
         return 0
     except ValueError as erro:
         print(json.dumps({"erro": str(erro)}, ensure_ascii=False))

@@ -1,0 +1,278 @@
+FFFFFFFFFFFFFF                                                           [100%]
+================================== FAILURES ===================================
+____________________ test_p01_transferencia_conserva_total ____________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p01_transferencia_conserv0')
+
+    def test_p01_transferencia_conserva_total(tmp_path):
+        banco = Banco(tmp_path / "conta.sqlite3")
+        banco.movimentar("depositar", "100")
+>       assert banco.investir("40.25") == (5975, 4025)
+               ^^^^^^^^^^^^^^
+E       AttributeError: 'Banco' object has no attribute 'investir'
+
+tests\test_poupanca.py:17: AttributeError
+__________________ test_p02_investir_todo_saldo_e_persistir ___________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p02_investir_todo_saldo_e0')
+
+    def test_p02_investir_todo_saldo_e_persistir(tmp_path):
+        caminho = tmp_path / "conta.sqlite3"
+        banco = Banco(caminho)
+        banco.movimentar("depositar", "0.01")
+>       assert banco.investir("0.01") == (0, 1)
+               ^^^^^^^^^^^^^^
+E       AttributeError: 'Banco' object has no attribute 'investir'
+
+tests\test_poupanca.py:26: AttributeError
+______________________ test_p03_insuficiente_nao_altera _______________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p03_insuficiente_nao_alte0')
+
+    def test_p03_insuficiente_nao_altera(tmp_path):
+        banco = Banco(tmp_path / "conta.sqlite3")
+        banco.movimentar("depositar", "10")
+        with pytest.raises(ValueError, match="Saldo insuficiente"):
+>           banco.investir("10.01")
+            ^^^^^^^^^^^^^^
+E           AttributeError: 'Banco' object has no attribute 'investir'
+
+tests\test_poupanca.py:34: AttributeError
+_________________________ test_p04_valor_invalido[0] __________________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p04_valor_invalido_0_0')
+valor = '0'
+
+    @pytest.mark.parametrize("valor", ["0", "-1", "1.001", "NaN", "abc"])
+    def test_p04_valor_invalido(tmp_path, valor):
+        banco = Banco(tmp_path / "conta.sqlite3")
+        banco.movimentar("depositar", "10")
+        with pytest.raises(ValueError):
+>           banco.investir(valor)
+            ^^^^^^^^^^^^^^
+E           AttributeError: 'Banco' object has no attribute 'investir'
+
+tests\test_poupanca.py:43: AttributeError
+_________________________ test_p04_valor_invalido[-1] _________________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p04_valor_invalido__1_0')
+valor = '-1'
+
+    @pytest.mark.parametrize("valor", ["0", "-1", "1.001", "NaN", "abc"])
+    def test_p04_valor_invalido(tmp_path, valor):
+        banco = Banco(tmp_path / "conta.sqlite3")
+        banco.movimentar("depositar", "10")
+        with pytest.raises(ValueError):
+>           banco.investir(valor)
+            ^^^^^^^^^^^^^^
+E           AttributeError: 'Banco' object has no attribute 'investir'
+
+tests\test_poupanca.py:43: AttributeError
+_______________________ test_p04_valor_invalido[1.001] ________________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p04_valor_invalido_1_001_0')
+valor = '1.001'
+
+    @pytest.mark.parametrize("valor", ["0", "-1", "1.001", "NaN", "abc"])
+    def test_p04_valor_invalido(tmp_path, valor):
+        banco = Banco(tmp_path / "conta.sqlite3")
+        banco.movimentar("depositar", "10")
+        with pytest.raises(ValueError):
+>           banco.investir(valor)
+            ^^^^^^^^^^^^^^
+E           AttributeError: 'Banco' object has no attribute 'investir'
+
+tests\test_poupanca.py:43: AttributeError
+________________________ test_p04_valor_invalido[NaN] _________________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p04_valor_invalido_NaN_0')
+valor = 'NaN'
+
+    @pytest.mark.parametrize("valor", ["0", "-1", "1.001", "NaN", "abc"])
+    def test_p04_valor_invalido(tmp_path, valor):
+        banco = Banco(tmp_path / "conta.sqlite3")
+        banco.movimentar("depositar", "10")
+        with pytest.raises(ValueError):
+>           banco.investir(valor)
+            ^^^^^^^^^^^^^^
+E           AttributeError: 'Banco' object has no attribute 'investir'
+
+tests\test_poupanca.py:43: AttributeError
+________________________ test_p04_valor_invalido[abc] _________________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p04_valor_invalido_abc_0')
+valor = 'abc'
+
+    @pytest.mark.parametrize("valor", ["0", "-1", "1.001", "NaN", "abc"])
+    def test_p04_valor_invalido(tmp_path, valor):
+        banco = Banco(tmp_path / "conta.sqlite3")
+        banco.movimentar("depositar", "10")
+        with pytest.raises(ValueError):
+>           banco.investir(valor)
+            ^^^^^^^^^^^^^^
+E           AttributeError: 'Banco' object has no attribute 'investir'
+
+tests\test_poupanca.py:43: AttributeError
+__________________ test_p05_migracao_preserva_versao_inicial __________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p05_migracao_preserva_ver0')
+
+    def test_p05_migracao_preserva_versao_inicial(tmp_path):
+        caminho = tmp_path / "legado.sqlite3"
+        with sqlite3.connect(caminho) as conexao:
+            conexao.execute("CREATE TABLE conta(id INTEGER PRIMARY KEY CHECK(id=1), saldo INTEGER NOT NULL CHECK(saldo>=0))")
+            conexao.execute("INSERT INTO conta VALUES(1, 12345)")
+>       assert Banco(caminho).posicao() == (12345, 0)
+               ^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'Banco' object has no attribute 'posicao'
+
+tests\test_poupanca.py:52: AttributeError
+______________________ test_p06_rollback_falha_no_banco _______________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p06_rollback_falha_no_ban0')
+
+    def test_p06_rollback_falha_no_banco(tmp_path):
+        caminho = tmp_path / "conta.sqlite3"
+        banco = Banco(caminho)
+        banco.movimentar("depositar", "100")
+        with sqlite3.connect(caminho) as conexao:
+            conexao.execute("CREATE TRIGGER falhar BEFORE UPDATE OF poupanca ON conta BEGIN SELECT RAISE(ABORT, 'falha simulada'); END")
+        with pytest.raises(sqlite3.IntegrityError, match="falha simulada"):
+>           banco.investir("40")
+            ^^^^^^^^^^^^^^
+E           AttributeError: 'Banco' object has no attribute 'investir'
+
+tests\test_poupanca.py:65: AttributeError
+__________________ test_p07_operacoes_antigas_apos_investir ___________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p07_operacoes_antigas_apo0')
+
+    def test_p07_operacoes_antigas_apos_investir(tmp_path):
+        banco = Banco(tmp_path / "conta.sqlite3")
+        banco.movimentar("depositar", "100")
+>       banco.investir("40")
+        ^^^^^^^^^^^^^^
+E       AttributeError: 'Banco' object has no attribute 'investir'
+
+tests\test_poupanca.py:72: AttributeError
+_____________________ test_p08_jornada_funcional_poupanca _____________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p08_jornada_funcional_pou0')
+
+    def test_p08_jornada_funcional_poupanca(tmp_path):
+        app = Path(__file__).resolve().parents[1] / "app.py"
+        caminho = tmp_path / "cliente.sqlite3"
+        def executar(*args):
+            retorno = subprocess.run([sys.executable, str(app), "--banco", str(caminho), *args], capture_output=True, text=True, encoding="utf-8", env={**os.environ, "PYTHONIOENCODING": "utf-8"}, timeout=15)
+            return retorno.returncode, json.loads(retorno.stdout)
+        assert executar("depositar", "200") == (0, {"saldo": "200.00"})
+>       assert executar("investir", "75,50") == (0, {"saldo": "124.50", "poupanca": "75.50", "total": "200.00"})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_poupanca.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_poupanca.py:84: in executar
+    return retorno.returncode, json.loads(retorno.stdout)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\json\__init__.py:352: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py:345: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.decoder.JSONDecoder object at 0x000001E1FC12BA10>, s = '', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+..\..\..\..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py:363: JSONDecodeError
+_____________________ test_p09_investimentos_concorrentes _____________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p09_investimentos_concorr0')
+
+    def test_p09_investimentos_concorrentes(tmp_path):
+        caminho = tmp_path / "conta.sqlite3"
+        banco = Banco(caminho)
+        banco.movimentar("depositar", "100")
+        def tentar(_):
+            try:
+                Banco(caminho).investir("80")
+                return True
+            except ValueError:
+                return False
+        with ThreadPoolExecutor(max_workers=2) as executor:
+>           resultados = list(executor.map(tentar, range(2)))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_poupanca.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\_base.py:639: in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\_base.py:311: in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\_base.py:450: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\_base.py:395: in __get_result
+    raise self._exception
+..\..\..\..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+_ = 0
+
+    def tentar(_):
+        try:
+>           Banco(caminho).investir("80")
+            ^^^^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'Banco' object has no attribute 'investir'
+
+tests\test_poupanca.py:98: AttributeError
+_________________ test_p10_limite_poupanca_preserva_corrente __________________
+
+tmp_path = WindowsPath('C:/Users/Rafael Costa/AppData/Local/Temp/pytest-of-Rafael Costa/pytest-4/test_p10_limite_poupanca_prese0')
+
+    def test_p10_limite_poupanca_preserva_corrente(tmp_path):
+        banco = Banco(tmp_path / "conta.sqlite3")
+        banco.movimentar("depositar", "999999999.99")
+>       banco.investir("999999999.99")
+        ^^^^^^^^^^^^^^
+E       AttributeError: 'Banco' object has no attribute 'investir'
+
+tests\test_poupanca.py:111: AttributeError
+=========================== short test summary info ===========================
+FAILED tests/test_poupanca.py::test_p01_transferencia_conserva_total - Attrib...
+FAILED tests/test_poupanca.py::test_p02_investir_todo_saldo_e_persistir - Att...
+FAILED tests/test_poupanca.py::test_p03_insuficiente_nao_altera - AttributeEr...
+FAILED tests/test_poupanca.py::test_p04_valor_invalido[0] - AttributeError: '...
+FAILED tests/test_poupanca.py::test_p04_valor_invalido[-1] - AttributeError: ...
+FAILED tests/test_poupanca.py::test_p04_valor_invalido[1.001] - AttributeErro...
+FAILED tests/test_poupanca.py::test_p04_valor_invalido[NaN] - AttributeError:...
+FAILED tests/test_poupanca.py::test_p04_valor_invalido[abc] - AttributeError:...
+FAILED tests/test_poupanca.py::test_p05_migracao_preserva_versao_inicial - At...
+FAILED tests/test_poupanca.py::test_p06_rollback_falha_no_banco - AttributeEr...
+FAILED tests/test_poupanca.py::test_p07_operacoes_antigas_apos_investir - Att...
+FAILED tests/test_poupanca.py::test_p08_jornada_funcional_poupanca - json.dec...
+FAILED tests/test_poupanca.py::test_p09_investimentos_concorrentes - Attribut...
+FAILED tests/test_poupanca.py::test_p10_limite_poupanca_preserva_corrente - A...
+14 failed in 1.14s

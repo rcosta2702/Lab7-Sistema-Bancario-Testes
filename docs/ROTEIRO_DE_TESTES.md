@@ -29,3 +29,18 @@ Unitários chamam somente funções puras. Integração combina serviço, regras
 ## Regressão planejada
 
 Preservar todos os casos acima. A extensão de poupança terá casos novos para transferência entre saldos, saldo insuficiente, conservação do total, persistência, rollback e uso pela interface. As regras detalhadas serão acrescentadas à especificação antes da implementação da extensão.
+
+## Casos da extensão 7.5
+
+| ID | Tipo | Requisito | Pré-condição e passos | Resultado esperado |
+| --- | --- | --- | --- | --- |
+| P01 | Integração | RF-04 | Depositar 100; investir 40,25 | Corrente 59,75; poupança 40,25; total 100 |
+| P02 | Integração | RF-04, RNF-01 | Depositar/investir 0,01; reabrir | Corrente zero; poupança 0,01 |
+| P03 | Integração | RF-04 | Saldo 10; investir 10,01 | Recusa sem alteração |
+| P04 | Integração | RB-01 | Investir 0, -1, 1.001, NaN e abc | Cinco recusas; saldo preservado |
+| P05 | Integração | RNF-03 | Criar esquema antigo com 123,45; abrir; investir 23,45; reabrir | Migração preserva valores; saldo 100 e poupança 23,45 |
+| P06 | Integração | RNF-04 | Saldo 100; trigger SQLite força falha ao investir 40 | Exceção e rollback: 100 e zero |
+| P07 | Integração/regressão | RF-02/03/04 | Depositar 100; investir 40; depositar 10; sacar 20 | Corrente 50; poupança 40 |
+| P08 | Funcional | RF-04/05 | Comandos reais: depositar 200; investir 75,50; consultar; tentar investir 125 | Corrente 124,50; poupança 75,50; total 200; erro preserva valores |
+| P09 | Integração | RNF-04 | Saldo 100; duas threads tentam investir 80 | Apenas uma aprovada; corrente 20; poupança 80 |
+| P10 | Integração | RB-01 | Poupança no teto; corrente 0,01; investir 0,01 | Limite excedido e corrente preservada |
